@@ -3,44 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CallBackSpace Button</title>
+    <title>DOOM in Browser</title>
+    <script src="https://js-dos.com/cdn/js-dos.js"></script>
     <style>
-        body {
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            background: black;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <button id="callbackspaceButton">CallBackSpace</button>
-
+    <canvas id="doomCanvas"></canvas>
+    
     <script>
-        const button = document.getElementById('callbackspaceButton');
-        button.addEventListener('click', () => {
-            const targetURL = "https://a13x-space.github.io/Codes..Find-All-Codes/key.html";
-            const targetTab = Array.from(window.open('', '_blank')).find(tab => tab.location.href === targetURL);
-            if (targetTab) {
-                targetTab.location.href = "https://a13x-space.github.io/Codes..Find-All-Codes/n0.html";
-            }
-        });
+        function runDoom() {
+            Dos(document.getElementById("doomCanvas")).run("https://js-dos.com/cdn/files/doom.exe");
+        }
+
+        function resizeCanvas() {
+            let canvas = document.getElementById("doomCanvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.onload = function() {
+            runDoom();
+            resizeCanvas();
+        };
+
+        window.onresize = resizeCanvas;
     </script>
 </body>
 </html>
